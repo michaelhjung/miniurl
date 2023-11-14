@@ -3,14 +3,15 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 
-const Header = () => {
+const NavPrimary = () => {
   const currentUser = useSelector((state) => state.users.currentUser);
+  // TODO: Replace profile button component
 
   return (
-    <header className="header">
+    <header className="nav-primary">
       <Link to="/" onClick={() => window.scrollTo(0, 0)}>
         <div className="logo-container">
-          {/* <img className="logo" src={} alt="miniurl-logo" /> */}
+          <img className="logo" src="" alt="miniurl-logo" />
         </div>
       </Link>
 
@@ -21,4 +22,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default NavPrimary;

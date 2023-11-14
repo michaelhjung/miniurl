@@ -8,6 +8,8 @@ import SignUpForm from "./Forms/SignUpForm";
 import Icon from "@mdi/react";
 import { mdiMenu, mdiAccountCircle } from "@mdi/js";
 
+// TODO: delete after creating new NavPrimary component
+
 function ProfileButton({ currentUser }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
@@ -63,7 +65,7 @@ function ProfileButton({ currentUser }) {
         <Icon
           path={mdiAccountCircle}
           size={1.5}
-          color={currentUser ? "#00ADD8" : "#717171"}
+          color={currentUser ? "#66B2B2" : "#717171"}
         />
       </button>
 

@@ -1,14 +1,4 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-}
-
-.logo {
-  width: auto;
-  height: 50px;
-}
+// TODO: REPLACE
 
 #profile-button {
   display: flex;
@@ -66,7 +56,7 @@
     white-space: nowrap;
 
     span {
-      color: $gopher-blue;
+      color: $teal-blue;
       font-weight: 800;
     }
   }
