@@ -1,0 +1,10 @@
+.hero-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  #hero-logo {
+    width: 40%;
+    height: auto;
+  }
+}

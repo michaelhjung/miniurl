@@ -1,0 +1,73 @@
+form {
+  width: 100%;
+  padding: 20px 40px;
+
+  h2 {
+    color: $slate-gray;
+    margin: 0 0 15px;
+  }
+
+  .input-container {
+    position: relative;
+
+    input {
+      width: 100%;
+      height: 60px;
+      padding: 12px 15px;
+      border: 1px solid #ebebeb;
+
+      &.first-input {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+
+      &.last-input {
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+
+      &:focus {
+        border-color: $gopher-blue;
+        outline: none;
+      }
+    }
+
+    label {
+      position: absolute;
+      left: 15px; // Same as the input padding-left
+      top: 30%;
+      color: $form-label-gray;
+      pointer-events: none; // This ensures that clicks go through the label to the input
+      transition: 0.25s ease;
+    }
+
+    // moves the label to the top when there is any value in the input
+    input:not(:placeholder-shown) + label {
+      top: 3px;
+      font-size: 0.75rem;
+      color: $gopher-blue;
+    }
+
+    // a placeholder is required for the above effect, but creates an overlap,
+    // so this makes the double placeholder invisible
+    input::placeholder {
+      opacity: 0;
+    }
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 14px 0;
+    margin-top: 15px;
+    background-color: $gopher-blue;
+    border-radius: 8px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: darken($gopher-blue, 10%);
+    }
+  }
+}
