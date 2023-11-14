@@ -38,8 +38,10 @@ func (a *API) InitRoutes(app *fiber.App) {
 	csrf := api.Group("/csrf")
 	session := api.Group("/session")
 	users := api.Group("/users")
+	urls := api.Group("/urls")
 
 	a.InitCSRFRoutes(csrf)
 	a.InitSessionRoutes(session)
 	a.InitUserRoutes(users)
+	a.InitURLRoutes(urls)
 }

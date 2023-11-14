@@ -14,6 +14,7 @@ import (
 func (a *API) InitUserRoutes(users fiber.Router) {
 	users.Get("/", a.getAllUsers)
 	users.Get("/:id", a.getUserByID)
+	users.Get("/:id", a.getURLsByUserID)
 	users.Post("/", a.createUser)
 	users.Put("/:id/password", a.updateUserPassword)
 	users.Put("/:id", a.updateUser)
@@ -41,6 +42,20 @@ func (a *API) getUserByID(c *fiber.Ctx) error {
 	}
 
 	return c.JSON(user)
+}
+
+func (a *API) getURLsByUserID(c *fiber.Ctx) error {
+	userID, err := util.GetIDFromParams(c, "userID")
+	if err != nil {
+		return res.BadRequestError(c, fmt.Sprintf("Invalid user ID param: %s", c.Params("userID")))
+	}
+
+	urls, err := a.Service.GetURLsByUserID(userID)
+	if err != nil {
+		return res.InternalServerError(c, "Failed to retrieve URLs by user ID")
+	}
+
+	return c.JSON(urls)
 }
 
 func (a *API) createUser(c *fiber.Ctx) error {
