@@ -2,15 +2,15 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../context/ModalContext";
 import { login, logout } from "../store/users";
-import ProfileMenuButton from "./ProfileMenuButton";
-import LoginForm from "./Forms/LoginForm";
-import SignUpForm from "./Forms/SignUpForm";
+import { ProfileMenuButton } from "./ProfileMenuButton";
+import { LoginForm } from "./Forms/LoginForm";
+import { SignUpForm } from "./Forms/SignUpForm";
 import Icon from "@mdi/react";
 import { mdiMenu, mdiAccountCircle } from "@mdi/js";
 
 // TODO: delete after creating new NavPrimary component
 
-function ProfileButton({ currentUser }) {
+export const ProfileButton = ({ currentUser }) => {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const { openModal, closeModal } = useModal();
@@ -99,6 +99,4 @@ function ProfileButton({ currentUser }) {
       )}
     </div>
   );
-}
-
-export default ProfileButton;
+};

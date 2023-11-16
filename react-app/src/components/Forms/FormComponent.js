@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-function FormComponent({ formTitle, formData, onSubmit, initialValues = {} }) {
+export const FormComponent = ({
+  formTitle,
+  formData,
+  onSubmit,
+  initialValues = {},
+}) => {
   const [values, setValues] = useState(initialValues);
 
   const handleChange = (e) => {
@@ -31,8 +36,8 @@ function FormComponent({ formTitle, formData, onSubmit, initialValues = {} }) {
               index === 0
                 ? "first-input"
                 : index === formData.length - 1
-                ? "last-input"
-                : ""
+                  ? "last-input"
+                  : ""
             }
             autoFocus={index === 0 ? true : false}
           />
@@ -42,6 +47,4 @@ function FormComponent({ formTitle, formData, onSubmit, initialValues = {} }) {
       <button type="submit">Submit</button>
     </form>
   );
-}
-
-export default FormComponent;
+};

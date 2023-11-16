@@ -41,7 +41,6 @@
       transition: transform 0.3s ease;
 
       &:hover {
-        // color: $darker-gray;
         color: $teal-blue;
         transform: translateY(-2px); /* Small lift effect on hover */
       }

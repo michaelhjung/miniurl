@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import FormComponent from "./FormComponent";
+import { FormComponent } from "./FormComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser, login } from "../../store/users";
 
-function SignUpForm({ closeModal }) {
+export const SignUpForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.users.currentUser);
   // const error = useSelector(state =>  state.users.error)
@@ -80,15 +80,16 @@ function SignUpForm({ closeModal }) {
   };
 
   return (
-    <div>
+    <div className="form-wrapper">
       {/* {error && <div className="error">{error}</div>} */}
       <FormComponent
         formTitle="Sign Up"
         formData={formData}
         onSubmit={handleSubmit}
       />
+      <p>
+        Already have an account? Log in <a href="/login">here</a>.
+      </p>
     </div>
   );
-}
-
-export default SignUpForm;
+};

@@ -1,9 +1,9 @@
 import React from "react";
-import SocialLink from "./SocialLink";
+import { SocialLink } from "./SocialLink";
 import Icon from "@mdi/react";
 import { mdiLinkedin, mdiGithub, mdiBriefcaseOutline } from "@mdi/js";
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-copyright-container">
@@ -41,5 +41,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;

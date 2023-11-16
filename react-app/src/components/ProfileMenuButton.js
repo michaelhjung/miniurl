@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 // TODO: delete after creating new NavPrimary component
 
-function ProfileMenuButton({ text, clickHandler, link }) {
+export const ProfileMenuButton = ({ text, clickHandler, link }) => {
   if (link) {
     return (
       <NavLink to={link} className="profile-menu-button">
@@ -17,6 +17,4 @@ function ProfileMenuButton({ text, clickHandler, link }) {
       {text}
     </button>
   );
-}
-
-export default ProfileMenuButton;
+};

@@ -3,9 +3,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchCurrentUser } from "./store/users";
 import { ModalProvider } from "./context/ModalContext";
-import Landing from "./pages/Landing";
+import { Landing } from "./pages/Landing";
+import { LoginPage } from "./pages/Login";
+import { SignupPage } from "./pages/Signup";
 
-function App() {
+export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,10 +19,10 @@ function App() {
       <ModalProvider>
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
         </Routes>
       </ModalProvider>
     </Router>
   );
-}
-
-export default App;
+};

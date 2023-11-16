@@ -1,8 +1,8 @@
 import React from "react";
-import Footer from "../components/Footer";
-import { LandingNav } from "../components/Landing/LandingNav";
+import { Footer } from "../components/Footer";
+import { LandingNav } from "../components/Nav/LandingNav";
 
-function Landing() {
+export const Landing = () => {
   return (
     <div>
       <LandingNav />
@@ -12,6 +12,4 @@ function Landing() {
       <Footer />
     </div>
   );
-}
-
-export default Landing;
+};

@@ -1,9 +1,12 @@
+.base-nav,
 .landing-nav,
 .nav-primary {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid $lighter-gray;
 
   .landing-nav-link {
     margin: 10px;
@@ -12,7 +15,7 @@
     color: $darker-gray;
 
     &.signup-link {
-      color: $teal-blue;
+      color: $bright-blue;
       font-weight: 600;
     }
 
