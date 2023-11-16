@@ -1,11 +1,11 @@
 import React from "react";
-import NavPrimary from "../components/NavPrimary";
 import Footer from "../components/Footer";
+import { LandingNav } from "../components/Landing/LandingNav";
 
 function Landing() {
   return (
     <div>
-      <NavPrimary />
+      <LandingNav />
 
       <main>TODO: Landing Section</main>
 

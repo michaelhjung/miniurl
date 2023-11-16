@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
+import { NavLogo } from "./NavLogo";
 
 const NavPrimary = () => {
   const currentUser = useSelector((state) => state.users.currentUser);
@@ -9,11 +9,7 @@ const NavPrimary = () => {
 
   return (
     <header className="nav-primary">
-      <Link to="/" onClick={() => window.scrollTo(0, 0)}>
-        <div className="logo-container">
-          <img className="logo" src="" alt="miniurl-logo" />
-        </div>
-      </Link>
+      <NavLogo />
 
       <div>
         <ProfileButton currentUser={currentUser} />
