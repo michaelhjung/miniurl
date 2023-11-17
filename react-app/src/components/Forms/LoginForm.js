@@ -1,18 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FormComponent } from "./FormComponent";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../../store/users";
+import { useNavigate } from "react-router-dom";
 
-export const LoginForm = ({ closeModal }) => {
+export const LoginForm = () => {
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.users.currentUser);
+  const navigate = useNavigate();
   // const error = useSelector(state => state.users.error)
-
-  useEffect(() => {
-    if (currentUser) {
-      closeModal();
-    }
-  }, [currentUser, closeModal]);
 
   const formData = [
     {
@@ -36,10 +31,11 @@ export const LoginForm = ({ closeModal }) => {
     };
 
     dispatch(login(credentials));
+    navigate("/");
   };
 
   return (
-    <div className="form-wrapper">
+    <div className="form-wrapper login-form-wrapper">
       {/* {error && <div className="error">{error}</div>} */}
       <FormComponent
         formTitle="Log In"

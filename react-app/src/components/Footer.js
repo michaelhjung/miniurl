@@ -1,14 +1,31 @@
 import React from "react";
 import { SocialLink } from "./SocialLink";
-import Icon from "@mdi/react";
-import { mdiLinkedin, mdiGithub, mdiBriefcaseOutline } from "@mdi/js";
 
 export const Footer = () => {
   return (
     <footer className="footer">
-      <div className="footer-copyright-container">
-        <span className="footer-copyright-text">
-          Copyright © 2023{" "}
+      <div className="footer-inner-wrapper">
+        <div className="footer-links">
+          <SocialLink
+            href="https://www.linkedin.com/in/michael-h-jung/"
+            icon={<i className="fa-brands fa-linkedin fa-2xl" />}
+            ariaLabel="LinkedIn"
+          />
+          <SocialLink
+            href="https://github.com/michaelhjung"
+            icon={<i className="fa-brands fa-github fa-2xl" />}
+            ariaLabel="Github"
+          />
+          <SocialLink
+            href="https://www.michaelhjung.com/"
+            icon={<i className="fa-solid fa-briefcase fa-2xl" />}
+            ariaLabel="Portfolio"
+          />
+        </div>
+
+        <div className="footer-copyright">
+          <span className="copyright-year-name">© 2023 Miniurl</span>. Brought
+          to you with <i className="fa-solid fa-heart" /> by{" "}
           <a
             className="michael-portfolio"
             href="https://www.michaelhjung.com/"
@@ -17,26 +34,7 @@ export const Footer = () => {
           >
             Michael Jung
           </a>
-          .
-        </span>
-      </div>
-
-      <div className="footer-contact">
-        <SocialLink
-          href="https://www.linkedin.com/in/michael-h-jung/"
-          icon={<Icon path={mdiLinkedin} size={2} />}
-          ariaLabel="LinkedIn"
-        />
-        <SocialLink
-          href="https://github.com/michaelhjung"
-          icon={<Icon path={mdiGithub} size={2} />}
-          ariaLabel="Github"
-        />
-        <SocialLink
-          href="https://www.michaelhjung.com/"
-          icon={<Icon path={mdiBriefcaseOutline} size={2} />}
-          ariaLabel="Portfolio"
-        />
+        </div>
       </div>
     </footer>
   );

@@ -1,48 +1,46 @@
 .footer {
-  position: fixed;
-  bottom: 0;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 1rem 3%;
-  background-color: $light-gray;
-  border-top: 0.75px solid $lighter-gray;
-  font-size: 0.9rem;
+  color: $dark-gray;
 
-  .footer-copyright-container {
+  .footer-inner-wrapper {
+    width: 75%;
+    min-width: 450px;
     display: flex;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
+    padding: 100px;
+    margin-top: 100px;
+    border-top: 0.75px solid $lighter-gray;
 
-    .footer-copyright-text {
-      color: $medium-gray;
+    .footer-links {
+      display: flex;
+      align-items: center;
 
-      .michael-portfolio {
-        color: #0073e6;
-        transition: color 0.3s ease;
-        text-decoration: none;
+      .footer-link {
+        margin: 0 13px;
+        color: $medium-dark-gray;
+        transition:
+          color 0.3s,
+          transform 0.3s ease;
 
         &:hover {
-          color: #005bb5;
-          font-weight: 500;
+          color: $teal-blue;
+          transform: translateY(-4px); /* Small lift effect on hover */
         }
       }
     }
-  }
 
-  .footer-contact {
-    display: flex;
-    align-items: center;
+    .footer-copyright {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      text-align: center;
 
-    .footer-link {
-      margin: 0 10px;
-      color: #666;
-      transition: color 0.3s;
-      transition: transform 0.3s ease;
-
-      &:hover {
-        color: $teal-blue;
-        transform: translateY(-2px); /* Small lift effect on hover */
+      .copyright-year-name {
+        font-weight: 700;
       }
     }
   }

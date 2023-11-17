@@ -8,7 +8,7 @@ export const NavPrimary = () => {
   // TODO: Replace profile button component
 
   return (
-    <header className="nav-primary">
+    <header className="top-nav">
       <NavLogo />
 
       <div>

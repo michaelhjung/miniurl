@@ -1,18 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FormComponent } from "./FormComponent";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createUser, login } from "../../store/users";
+import { useNavigate } from "react-router-dom";
 
-export const SignUpForm = ({ closeModal }) => {
+export const SignUpForm = () => {
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.users.currentUser);
+  const navigate = useNavigate();
   // const error = useSelector(state =>  state.users.error)
-
-  useEffect(() => {
-    if (currentUser) {
-      closeModal();
-    }
-  }, [currentUser, closeModal]);
 
   const formData = [
     {
@@ -73,6 +68,7 @@ export const SignUpForm = ({ closeModal }) => {
         };
 
         await dispatch(login(loginCredentials));
+        navigate("/");
       }
     } catch (error) {
       console.error(`Error when creating user and profile: ${error}`);
@@ -80,7 +76,7 @@ export const SignUpForm = ({ closeModal }) => {
   };
 
   return (
-    <div className="form-wrapper">
+    <div className="form-wrapper signup-form-wrapper">
       {/* {error && <div className="error">{error}</div>} */}
       <FormComponent
         formTitle="Sign Up"

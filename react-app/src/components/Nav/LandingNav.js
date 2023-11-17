@@ -4,7 +4,7 @@ import { LandingNavRight } from "./LandingNavRight";
 
 export const LandingNav = () => {
   return (
-    <header className="landing-nav">
+    <header className="top-nav">
       <NavLogo />
       <LandingNavRight />
     </header>

@@ -1,12 +1,14 @@
-.base-nav,
-.landing-nav,
-.nav-primary {
+.top-nav {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px;
-  margin-bottom: 30px;
+  padding: 10px 20px;
   border-bottom: 1px solid $lighter-gray;
+  box-shadow: 0 1px 4px #0000001a;
 
   .landing-nav-link {
     margin: 10px;
