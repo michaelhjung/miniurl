@@ -24,7 +24,9 @@ export const Landing = () => {
         <LandingNav />
 
         <main>
-          TODO: Landing Section
+          <section className="hero-section">
+            <h1>The minimalist's URL shortener with insightful analytics</h1>
+          </section>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
