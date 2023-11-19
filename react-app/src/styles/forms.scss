@@ -15,7 +15,6 @@
 
 form {
   width: 100%;
-  padding: 20px 40px;
 
   h2 {
     color: $teal-blue;
@@ -69,20 +68,8 @@ form {
       opacity: 0;
     }
   }
+}
 
-  button[type="submit"] {
-    width: 100%;
-    padding: 14px 0;
-    margin-top: 15px;
-    background-color: $teal-blue;
-    border-radius: 8px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-
-    &:hover {
-      background-color: darken($teal-blue, 10%);
-    }
-  }
+.under-form-text {
+  margin-top: 20px;
 }

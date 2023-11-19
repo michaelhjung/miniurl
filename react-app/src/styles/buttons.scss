@@ -1,0 +1,22 @@
+button {
+  width: 100%;
+  padding: 14px 0;
+  background-color: $teal-blue;
+  border-radius: 8px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: darken($teal-blue, 10%);
+  }
+}
+
+.demo-login-button {
+  background-color: $beige;
+
+  &:hover {
+    background-color: darken($beige, 10%);
+  }
+}

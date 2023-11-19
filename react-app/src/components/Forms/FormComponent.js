@@ -44,7 +44,9 @@ export const FormComponent = ({
           <label htmlFor={field.name}>{field.placeholder}</label>
         </div>
       ))}
-      <button type="submit">Submit</button>
+      <button className="mt-3" type="submit">
+        Submit
+      </button>
     </form>
   );
 };

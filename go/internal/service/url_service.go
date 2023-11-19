@@ -27,6 +27,15 @@ func (s *Service) GetAllURLs() ([]models.Url, error) {
 	return urls, nil
 }
 
+func (s *Service) GetUsersURLs(userID uint) ([]models.Url, error) {
+	urls, err := s.Repo.GetURLsByUserID(userID)
+	if err != nil {
+		return nil, err
+	}
+
+	return urls, nil
+}
+
 func (s *Service) GetURLByID(urlID uint) (*models.Url, error) {
 	url, err := s.Repo.GetURLByID(urlID)
 	if err != nil {
@@ -34,15 +43,6 @@ func (s *Service) GetURLByID(urlID uint) (*models.Url, error) {
 	}
 
 	return url, nil
-}
-
-func (s *Service) GetURLsByUserID(userID uint) ([]models.Url, error) {
-	urls, err := s.Repo.GetURLsByUserID(userID)
-	if err != nil {
-		return nil, err
-	}
-
-	return urls, nil
 }
 
 func (s *Service) CreateURL(urlInput *CreateURLRequest) (*models.Url, error) {

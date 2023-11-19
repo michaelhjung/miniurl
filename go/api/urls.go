@@ -13,6 +13,7 @@ import (
 
 func (a *API) InitURLRoutes(urls fiber.Router) {
 	urls.Get("/", a.getAllURLs)
+	urls.Get("/users/:userID", a.getAllUsersURLs)
 	urls.Get("/:id", a.getURLByID)
 	urls.Post("/", a.createURL)
 	urls.Put("/:id", a.updateURL)
@@ -23,6 +24,20 @@ func (a *API) getAllURLs(c *fiber.Ctx) error {
 	urls, err := a.Service.GetAllURLs()
 	if err != nil {
 		return res.InternalServerError(c, "Failed to retrieve URLs")
+	}
+
+	return c.JSON(urls)
+}
+
+func (a *API) getAllUsersURLs(c *fiber.Ctx) error {
+	userID, err := util.GetIDFromParams(c, "userID")
+	if err != nil {
+		return res.BadRequestError(c, fmt.Sprintf("Invalid user ID param: %s", c.Params("userID")))
+	}
+
+	urls, err := a.Service.GetUsersURLs(userID)
+	if err != nil {
+		return res.InternalServerError(c, "Failed to retrieve URLs by user ID")
 	}
 
 	return c.JSON(urls)

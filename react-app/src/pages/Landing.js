@@ -1,101 +1,101 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Footer } from "../components/Footer";
 import { LandingNav } from "../components/Nav/LandingNav";
-import { useSelector } from "react-redux";
-import { NavPrimary } from "../components/Nav/NavPrimary";
 
 export const Landing = () => {
   const currentUser = useSelector((state) => state.users.currentUser);
+  const navigate = useNavigate();
 
-  console.log("currentUser", currentUser);
+  useEffect(() => {
+    if (currentUser) return navigate("/dashboard");
+  }, [currentUser, navigate]);
 
-  if (currentUser) {
-    // TODO: CREATE AND ADD COMPONENTS FOR A LOGGED IN USER
-    return (
-      <div>
-        <NavPrimary />
+  return (
+    <div>
+      <LandingNav />
 
-        <Footer />
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <LandingNav />
+      <main>
+        <section className="hero-section">
+          <h1>The minimalist's URL shortener with insightful analytics</h1>
+        </section>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacinia
+          quis vel eros donec ac. Non odio euismod lacinia at quis risus sed
+          vulputate. Neque convallis a cras semper auctor neque vitae. Proin
+          libero nunc consequat interdum varius. Aliquet bibendum enim facilisis
+          gravida neque convallis a. Iaculis urna id volutpat lacus laoreet non
+          curabitur gravida. Vivamus at augue eget arcu dictum varius duis at.
+          Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing
+          elit. Nulla porttitor massa id neque aliquam vestibulum morbi blandit
+          cursus. Nunc scelerisque viverra mauris in. Nunc consequat interdum
+          varius sit amet mattis vulputate enim. Eget dolor morbi non arcu risus
+          quis varius. Massa id neque aliquam vestibulum morbi blandit cursus.
+          Nisl rhoncus mattis rhoncus urna neque. Ut lectus arcu bibendum at
+          varius vel.
+          <br />
+          <br />
+          Hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit
+          ullamcorper. Nulla aliquet enim tortor at auctor urna nunc id cursus.
+          Dis parturient montes nascetur ridiculus mus mauris vitae ultricies
+          leo. Id aliquet lectus proin nibh nisl condimentum. Lectus nulla at
+          volutpat diam ut venenatis tellus in. Enim diam vulputate ut pharetra
+          sit amet aliquam. Egestas sed sed risus pretium quam vulputate
+          dignissim suspendisse in. Vel fringilla est ullamcorper eget nulla
+          facilisi etiam. Cras sed felis eget velit. Eget dolor morbi non arcu
+          risus. Egestas purus viverra accumsan in nisl nisi. Pretium vulputate
+          sapien nec sagittis aliquam malesuada bibendum arcu. Fusce ut placerat
+          orci nulla. Vitae turpis massa sed elementum tempus. Sapien et ligula
+          ullamcorper malesuada proin libero nunc consequat interdum. Elementum
+          nisi quis eleifend quam adipiscing vitae proin. Lacus luctus accumsan
+          tortor posuere. In est ante in nibh mauris.
+          <br />
+          <br />
+          Sodales ut eu sem integer vitae justo. Purus sit amet volutpat
+          consequat mauris nunc congue nisi. Ac tincidunt vitae semper quis
+          lectus nulla at volutpat diam. Commodo nulla facilisi nullam vehicula
+          ipsum. Ut consequat semper viverra nam libero. Ut ornare lectus sit
+          amet. Aliquam eleifend mi in nulla posuere. Rutrum tellus pellentesque
+          eu tincidunt tortor aliquam nulla. Lectus magna fringilla urna
+          porttitor rhoncus dolor purus. Turpis cursus in hac habitasse platea
+          dictumst quisque sagittis. Viverra nibh cras pulvinar mattis nunc sed.
+          Nisl nunc mi ipsum faucibus vitae. Pharetra pharetra massa massa
+          ultricies mi quis hendrerit. Ac turpis egestas maecenas pharetra
+          convallis posuere. Id consectetur purus ut faucibus pulvinar elementum
+          integer enim neque. Quam elementum pulvinar etiam non quam. Pretium
+          nibh ipsum consequat nisl vel pretium. Vitae nunc sed velit dignissim.
+          <br />
+          <br />
+          At risus viverra adipiscing at in tellus. Quam pellentesque nec nam
+          aliquam sem et tortor consequat id. Tortor pretium viverra suspendisse
+          potenti nullam. Vestibulum sed arcu non odio euismod lacinia at. Urna
+          id volutpat lacus laoreet non curabitur gravida arcu ac. Placerat
+          vestibulum lectus mauris ultrices eros in cursus. Vel fringilla est
+          ullamcorper eget nulla facilisi. Sed pulvinar proin gravida hendrerit
+          lectus a. Fermentum dui faucibus in ornare quam. Neque convallis a
+          cras semper auctor. Non consectetur a erat nam at lectus urna.
+          Volutpat lacus laoreet non curabitur gravida arcu. In aliquam sem
+          fringilla ut morbi tincidunt augue. Eu sem integer vitae justo eget.
+          Erat velit scelerisque in dictum non consectetur a erat.
+          <br />
+          <br />
+          Rhoncus urna neque viverra justo nec ultrices dui sapien. Elementum
+          curabitur vitae nunc sed velit dignissim sodales. In vitae turpis
+          massa sed elementum tempus egestas. Laoreet sit amet cursus sit. Eu
+          consequat ac felis donec et odio pellentesque. Imperdiet dui accumsan
+          sit amet nulla facilisi morbi tempus. Nulla at volutpat diam ut
+          venenatis. Eget egestas purus viverra accumsan in nisl nisi. Nec
+          feugiat nisl pretium fusce id velit. Habitasse platea dictumst quisque
+          sagittis. Libero justo laoreet sit amet. Vestibulum sed arcu non odio.
+          Pharetra sit amet aliquam id diam maecenas ultricies. Aliquet nec
+          ullamcorper sit amet risus nullam. Sed vulputate odio ut enim blandit
+          volutpat maecenas volutpat.
+        </p>
+      </main>
 
-        <main>
-          <section className="hero-section">
-            <h1>The minimalist's URL shortener with insightful analytics</h1>
-          </section>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Elementum nibh tellus molestie nunc non blandit. Vel pharetra vel
-            turpis nunc eget lorem dolor sed. Dignissim cras tincidunt lobortis
-            feugiat. Lacus suspendisse faucibus interdum posuere lorem ipsum
-            dolor sit. Scelerisque varius morbi enim nunc faucibus a
-            pellentesque sit. Elit pellentesque habitant morbi tristique
-            senectus. Arcu bibendum at varius vel pharetra vel turpis nunc eget.
-            Massa sapien faucibus et molestie ac. Amet nulla facilisi morbi
-            tempus. Et tortor at risus viverra adipiscing at in tellus. Quis
-            risus sed vulputate odio ut enim. Orci phasellus egestas tellus
-            rutrum tellus pellentesque eu tincidunt tortor. Urna nunc id cursus
-            metus aliquam eleifend mi in nulla. Posuere lorem ipsum dolor sit
-            amet consectetur. Blandit libero volutpat sed cras ornare. Ac odio
-            tempor orci dapibus ultrices in iaculis. Platea dictumst quisque
-            sagittis purus sit amet volutpat. Gravida rutrum quisque non tellus
-            orci ac. Rutrum tellus pellentesque eu tincidunt tortor aliquam
-            nulla facilisi cras. Elementum nibh tellus molestie nunc. Nisl
-            rhoncus mattis rhoncus urna neque. Turpis egestas integer eget
-            aliquet nibh praesent. Nulla facilisi nullam vehicula ipsum a arcu
-            cursus vitae. Sed arcu non odio euismod lacinia at. Pharetra sit
-            amet aliquam id diam maecenas ultricies. Adipiscing vitae proin
-            sagittis nisl rhoncus mattis rhoncus urna neque. Tortor at risus
-            viverra adipiscing at. Condimentum vitae sapien pellentesque
-            habitant morbi tristique. Tortor consequat id porta nibh venenatis
-            cras. Euismod in pellentesque massa placerat duis ultricies lacus
-            sed. Donec adipiscing tristique risus nec feugiat in fermentum
-            posuere. Nec ultrices dui sapien eget. Non consectetur a erat nam at
-            lectus. Pulvinar pellentesque habitant morbi tristique senectus et
-            netus. Odio eu feugiat pretium nibh ipsum consequat nisl vel. Tortor
-            consequat id porta nibh. Sapien nec sagittis aliquam malesuada.
-            Sociis natoque penatibus et magnis dis parturient montes nascetur
-            ridiculus. Pretium lectus quam id leo in vitae turpis. Aliquet
-            lectus proin nibh nisl condimentum id venenatis a condimentum. Ac
-            orci phasellus egestas tellus rutrum tellus pellentesque. Semper
-            viverra nam libero justo laoreet sit amet cursus. Sed tempus urna et
-            pharetra. Nullam non nisi est sit amet facilisis. In cursus turpis
-            massa tincidunt dui ut. Purus ut faucibus pulvinar elementum integer
-            enim neque. Accumsan in nisl nisi scelerisque. Vel facilisis
-            volutpat est velit egestas dui id ornare arcu. Magna sit amet purus
-            gravida quis blandit turpis cursus in. Porttitor lacus luctus
-            accumsan tortor posuere ac ut consequat. Lacinia at quis risus sed
-            vulputate odio ut. Eros in cursus turpis massa tincidunt dui ut.
-            Aliquet lectus proin nibh nisl condimentum. Dolor sit amet
-            consectetur adipiscing elit ut aliquam purus sit. Nec ultrices dui
-            sapien eget. Arcu dictum varius duis at consectetur lorem donec
-            massa. Platea dictumst vestibulum rhoncus est pellentesque elit
-            ullamcorper dignissim. Urna duis convallis convallis tellus id
-            interdum velit laoreet id. Nulla facilisi cras fermentum odio eu
-            feugiat. Faucibus vitae aliquet nec ullamcorper sit amet. Est
-            placerat in egestas erat. Sit amet nulla facilisi morbi tempus
-            iaculis. Tortor at auctor urna nunc. Tempus imperdiet nulla
-            malesuada pellentesque. Consectetur libero id faucibus nisl
-            tincidunt eget nullam non nisi. Cras semper auctor neque vitae
-            tempus. Velit sed ullamcorper morbi tincidunt ornare massa eget
-            egestas purus. In iaculis nunc sed augue. Sagittis eu volutpat odio
-            facilisis mauris. Diam vulputate ut pharetra sit amet aliquam. Urna
-            porttitor rhoncus dolor purus non enim. Eu mi bibendum neque egestas
-            congue quisque egestas. Enim diam vulputate ut pharetra sit amet.
-            Viverra adipiscing at in tellus integer. Commodo quis imperdiet
-            massa tincidunt nunc pulvinar sapien et. At consectetur lorem donec
-            massa sapien faucibus et molestie ac. Arcu cursus euismod quis
-            viverra nibh. Viverra vitae congue eu consequat ac felis donec et.
-          </p>
-        </main>
-
-        <Footer />
-      </div>
-    );
-  }
+      <Footer />
+    </div>
+  );
 };

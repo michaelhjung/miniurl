@@ -6,6 +6,7 @@ import { ModalProvider } from "./context/ModalContext";
 import { Landing } from "./pages/Landing";
 import { LoginPage } from "./pages/Login";
 import { SignupPage } from "./pages/Signup";
+import { Dashboard } from "./pages/Dashboard";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,8 @@ export const App = () => {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </ModalProvider>
     </Router>
