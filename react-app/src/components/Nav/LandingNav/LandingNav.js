@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLogo } from "./NavLogo";
+import { NavLogo } from "../NavLogo";
 import { LandingNavRight } from "./LandingNavRight";
 
 export const LandingNav = () => {

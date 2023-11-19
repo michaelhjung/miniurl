@@ -1,53 +1,52 @@
-// TODO: REPLACE
-
-#profile-button {
+.user-menu-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 77px;
-  height: 42px;
-  padding: 5px 5px 5px 12px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
   background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 21px;
+  color: $darker-gray;
+  border-radius: $standard-border-radius;
 
   &:hover {
-    box-shadow: 0px 2px 4px 0.5px #ddd;
+    background-color: #fff;
+    color: $bittersweet;
     cursor: pointer;
   }
 }
 
-#profile-menu {
+.user-menu-dropdown {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   position: absolute;
-  width: 250px;
-  top: 55px;
-  right: 30px;
+  width: 200px;
+  top: 65px;
+  right: 20px;
   padding: 10px 0px;
   background-color: #fff;
+  border-radius: $standard-border-radius;
   box-shadow: 0px 0px 14px 0.5px rgba(221, 221, 221, 0.7);
-  border-radius: 15px;
   list-style: none;
 
-  .profile-menu-button {
+  .user-menu-dropdown-link,
+  .user-menu-dropdown-button {
+    width: 100%;
     border: none;
     background-color: #fff;
     color: #000;
     padding: 15px;
     font-size: 0.8rem;
-    width: 250px;
     text-align: left;
     white-space: nowrap;
 
     &:hover {
-      background-color: $light-gray;
+      color: $bittersweet;
       cursor: pointer;
     }
 
     &:last-child {
-      font-weight: 800;
+      font-weight: 700;
     }
   }
 
@@ -58,7 +57,7 @@
 
     span {
       color: $teal-blue;
-      font-weight: 800;
+      font-weight: 700;
     }
   }
 }

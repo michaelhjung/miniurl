@@ -31,13 +31,13 @@ form {
       border: 1px solid #ebebeb;
 
       &.first-input {
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
+        border-top-left-radius: $standard-border-radius;
+        border-top-right-radius: $standard-border-radius;
       }
 
       &.last-input {
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: $standard-border-radius;
+        border-bottom-right-radius: $standard-border-radius;
       }
 
       &:focus {

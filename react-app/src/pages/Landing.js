@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Footer } from "../components/Footer";
-import { LandingNav } from "../components/Nav/LandingNav";
+import { LandingNav } from "../components/Nav/LandingNav/LandingNav";
 
 export const Landing = () => {
   const currentUser = useSelector((state) => state.users.currentUser);
