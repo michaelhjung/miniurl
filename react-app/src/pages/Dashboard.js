@@ -22,7 +22,7 @@ export const Dashboard = () => {
   return (
     currentUser && (
       <div>
-        <NavPrimary />
+        <NavPrimary currentUser={currentUser} />
 
         <h1>This is the dashboard for a logged in user!</h1>
 

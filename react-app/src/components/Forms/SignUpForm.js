@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FormComponent } from "./FormComponent";
-import { useDispatch } from "react-redux";
 import { createUser, login } from "../../store/users";
 import { useNavigate } from "react-router-dom";
+import { isNoCurrentUserError } from "../../utils/errors";
 
 export const SignUpForm = () => {
+  const currentUser = useSelector((state) => state.users.currentUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const error = useSelector(state =>  state.users.error)
+  const error = useSelector((state) => state.users.error);
+  const noCurrentUserError = isNoCurrentUserError(error);
+
+  useEffect(() => {
+    if (!currentUser) return;
+
+    return navigate("/dashboard");
+  }, [currentUser, navigate]);
 
   const formData = [
     {
@@ -59,7 +68,7 @@ export const SignUpForm = () => {
 
     try {
       // 1. Create user
-      const userAction = await dispatch(createUser(userCredentials));
+      const userAction = dispatch(createUser(userCredentials));
       if (userAction.type === "user/createUser/fulfilled") {
         // 2. Log the user in
         const loginCredentials = {
@@ -67,8 +76,8 @@ export const SignUpForm = () => {
           password: values.password,
         };
 
-        await dispatch(login(loginCredentials));
-        navigate("/");
+        dispatch(login(loginCredentials));
+        navigate("/dashboard");
       }
     } catch (error) {
       console.error(`Error when creating user and profile: ${error}`);
@@ -77,7 +86,7 @@ export const SignUpForm = () => {
 
   return (
     <div className="form-wrapper signup-form-wrapper">
-      {/* {error && <div className="error">{error}</div>} */}
+      {error && !noCurrentUserError && <div className="error">{error}</div>}
       <FormComponent
         formTitle="Sign Up"
         formData={formData}

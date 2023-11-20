@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { NavLogo } from "./NavLogo";
 import { UserMenu } from "./UserMenu/UserMenu";
 
-export const NavPrimary = () => {
-  const currentUser = useSelector((state) => state.users.currentUser);
+export const NavPrimary = ({ currentUser }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,7 +12,7 @@ export const NavPrimary = () => {
 
   return (
     <header className="top-nav">
-      <NavLogo />
+      <NavLogo currentUser={currentUser} />
 
       <div>
         <UserMenu currentUser={currentUser} />
