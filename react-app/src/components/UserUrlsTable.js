@@ -1,17 +1,20 @@
 import React, { useEffect } from "react";
 import {
   filterDate,
-  filterShortUrl,
-  formatShortUrl,
   formatTimestampWithZone,
   initializeTable,
 } from "../utils/tabulator";
+import { copyToClipboard } from "../utils/clipboard";
 
-export const UserUrls = ({ data }) => {
+export const UserUrlsTable = ({ data }) => {
   const userUrlsSelector = "user-urls-table";
 
   const generateUserUrlsTable = async (data) => {
-    const deepCopyData = JSON.parse(JSON.stringify(data));
+    const formattedData = data.map((url) => ({
+      ...url,
+      formattedShortUrl: `${window.location.origin}/${url.shortUrl}`,
+    }));
+
     const columns = [
       {
         title: "Original URL",
@@ -21,11 +24,12 @@ export const UserUrls = ({ data }) => {
       },
       {
         title: "Shortened URL",
-        field: "shortUrl",
-        formatter: formatShortUrl,
+        field: "formattedShortUrl",
         headerFilter: "input",
-        headerFilterFunc: filterShortUrl,
         headerFilterPlaceholder: "Search",
+        cellClick: (e, cell) => {
+          copyToClipboard(cell.getValue());
+        },
       },
       {
         title: "Hits",
@@ -58,7 +62,12 @@ export const UserUrls = ({ data }) => {
     ];
     const placeholder = "No URLs created yet.";
 
-    initializeTable(deepCopyData, columns, `.${userUrlsSelector}`, placeholder);
+    initializeTable(
+      formattedData,
+      columns,
+      `.${userUrlsSelector}`,
+      placeholder
+    );
   };
 
   useEffect(() => {

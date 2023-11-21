@@ -5,7 +5,7 @@ import { NavPrimary } from "../components/Nav/NavPrimary";
 import { Footer } from "../components/Footer";
 import { fetchAllUsersUrls } from "../store/urls";
 import { CreateUrl } from "../components/Forms/CreateUrl";
-import { UserUrls } from "../components/UserUrls";
+import { UserUrlsTable } from "../components/UserUrlsTable";
 
 export const Dashboard = () => {
   const currentUser = useSelector((state) => state.users.currentUser);
@@ -32,7 +32,7 @@ export const Dashboard = () => {
 
         <CreateUrl />
 
-        <UserUrls data={userUrls} />
+        <UserUrlsTable data={userUrls} />
 
         <Footer />
       </div>

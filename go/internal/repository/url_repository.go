@@ -28,9 +28,9 @@ func (r *Repository) GetURLsByUserID(userID uint) ([]models.Url, error) {
 	return urls, nil
 }
 
-func (r *Repository) GetURLByShortURL(shortURL string) (*models.Url, error) {
+func (r *Repository) GetURLByShortURLToken(token string) (*models.Url, error) {
 	var url models.Url
-	err := r.DB.Where("short_url = ?", shortURL).First(&url).Error
+	err := r.DB.Where("short_url = ?", token).First(&url).Error
 	if err != nil {
 		if err == gorm.ErrRecordNotFound {
 			return nil, ErrURLNotFound

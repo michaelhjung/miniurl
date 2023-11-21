@@ -61,7 +61,7 @@ func (s *Service) CreateURL(urlInput *CreateURLRequest) (*models.Url, error) {
 		}
 
 		// Check if the generated token is already in use
-		existingURL, err := s.Repo.GetURLByShortURL(token)
+		existingURL, err := s.Repo.GetURLByShortURLToken(token)
 		if err != nil && !errors.Is(err, repository.ErrURLNotFound) {
 			return nil, fmt.Errorf("Failed to check existing URL: %w", err)
 		}
@@ -103,6 +103,22 @@ func (s *Service) UpdateURL(urlID uint, updateURL *UpdateURLRequest) (*models.Ur
 	if updateURL.ShortURL != nil {
 		currentURL.ShortURL = *updateURL.ShortURL
 	}
+
+	updatedURL, err := s.Repo.UpdateURL(currentURL)
+	if err != nil {
+		return nil, fmt.Errorf("Failed to update URL data: %w", err)
+	}
+
+	return updatedURL, nil
+}
+
+func (s *Service) UpdateURLHitsCount(urlID uint) (*models.Url, error) {
+	currentURL, err := s.Repo.GetURLByID(urlID)
+	if err != nil {
+		return nil, fmt.Errorf("Failed to fetch URL data: %w", err)
+	}
+
+	currentURL.Hits++
 
 	updatedURL, err := s.Repo.UpdateURL(currentURL)
 	if err != nil {
