@@ -1,0 +1,12 @@
+@import "react-toastify/dist/ReactToastify.min.css";
+
+/* Override button default styles */
+.Toastify__close-button {
+  width: auto;
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    opacity: 1;
+  }
+}

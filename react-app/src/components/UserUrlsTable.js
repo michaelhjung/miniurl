@@ -4,6 +4,7 @@ import {
   formatTimestampWithZone,
   initializeTable,
 } from "../utils/tabulator";
+import { ToastContainer, toast } from "react-toastify";
 import { copyToClipboard } from "../utils/clipboard";
 
 export const UserUrlsTable = ({ data }) => {
@@ -21,6 +22,10 @@ export const UserUrlsTable = ({ data }) => {
         field: "originalUrl",
         headerFilter: "input",
         headerFilterPlaceholder: "Search",
+        cellClick: (e, cell) => {
+          copyToClipboard(cell.getValue());
+          toast.success("Original URL copied to clipboard!");
+        },
       },
       {
         title: "Shortened URL",
@@ -29,6 +34,7 @@ export const UserUrlsTable = ({ data }) => {
         headerFilterPlaceholder: "Search",
         cellClick: (e, cell) => {
           copyToClipboard(cell.getValue());
+          toast.success("Shortened URL copied to clipboard!");
         },
       },
       {
@@ -40,18 +46,8 @@ export const UserUrlsTable = ({ data }) => {
         hozAlign: "center",
       },
       {
-        title: "Created At",
+        title: "Created Date",
         field: "createdAt",
-        formatter: (cell) => formatTimestampWithZone(cell.getValue()),
-        headerFilter: "input",
-        headerFilterFunc: filterDate,
-        headerFilterPlaceholder: "Search",
-        width: 230,
-        hozAlign: "center",
-      },
-      {
-        title: "Updated At",
-        field: "updatedAt",
         formatter: (cell) => formatTimestampWithZone(cell.getValue()),
         headerFilter: "input",
         headerFilterFunc: filterDate,
@@ -79,6 +75,7 @@ export const UserUrlsTable = ({ data }) => {
   return (
     <div className="user-urls-container mt-5">
       <div className={userUrlsSelector}></div>
+      <ToastContainer />
     </div>
   );
 };

@@ -13,7 +13,6 @@ export const Redirect = () => {
         const { originalUrl } = response;
         window.location.href = originalUrl;
       } catch (error) {
-        // Handle error (e.g., display an error page)
         console.error("Error redirecting:", error);
       } finally {
         setLoading(false);
