@@ -4,19 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavPrimary } from "../components/Nav/NavPrimary";
 import { Footer } from "../components/Footer";
 import { fetchAllUsersUrls } from "../store/urls";
+import { CreateUrl } from "../components/Forms/CreateUrl";
+import { UserUrls } from "../components/UserUrls";
 
 export const Dashboard = () => {
   const currentUser = useSelector((state) => state.users.currentUser);
-  const usersURLs = useSelector((state) => state.urls.urls);
+  const userUrls = useSelector((state) => state.urls.urls);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  // TODO: create components to build out dashboard
 
   useEffect(() => {
     if (!currentUser) return navigate("/");
 
-    dispatch(fetchAllUsersUrls());
+    dispatch(fetchAllUsersUrls(currentUser.id));
   }, [currentUser, navigate, dispatch]);
 
   return (
@@ -24,7 +24,15 @@ export const Dashboard = () => {
       <div>
         <NavPrimary currentUser={currentUser} />
 
-        <h1>This is the dashboard for a logged in user!</h1>
+        <h1>Welcome back, {currentUser.firstName}</h1>
+
+        <div className="dashboard-actions">
+          Reserved Space for Dashboard Actions
+        </div>
+
+        <CreateUrl />
+
+        <UserUrls data={userUrls} />
 
         <Footer />
       </div>

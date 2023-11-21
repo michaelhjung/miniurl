@@ -5,6 +5,9 @@ export const FormComponent = ({
   formData,
   onSubmit,
   initialValues = {},
+  formClasses,
+  submitButtonClasses,
+  submitButtonText,
 }) => {
   const [values, setValues] = useState(initialValues);
 
@@ -22,8 +25,8 @@ export const FormComponent = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>{formTitle}</h2>
+    <form className={formClasses || ""} onSubmit={handleSubmit}>
+      {formTitle && <h2>{formTitle}</h2>}
       {formData.map((field, index) => (
         <div className="input-container" key={index}>
           <input
@@ -44,8 +47,11 @@ export const FormComponent = ({
           <label htmlFor={field.name}>{field.placeholder}</label>
         </div>
       ))}
-      <button className="mt-3" type="submit">
-        Submit
+      <button
+        className={submitButtonClasses ? `${submitButtonClasses}` : "mt-3"}
+        type="submit"
+      >
+        {submitButtonText || "Submit"}
       </button>
     </form>
   );

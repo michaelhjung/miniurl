@@ -1,0 +1,139 @@
+@import "tabulator-tables/dist/css/tabulator_bootstrap5.min.css";
+
+.tabulator {
+  font-size: 0.9rem;
+
+  .tabulator-header-filter input::placeholder {
+    font-size: 0.8rem;
+  }
+}
+
+// ALTERNATIVE STYLING:
+// @import "tabulator-tables/dist/css/tabulator_simple.min.css";
+
+// .tabulator {
+//   .tabulator-header {
+//     background: #f0f0f0;
+//     border-color: #ddd;
+//     border-top-left-radius: 5px;
+//     border-top-right-radius: 5px;
+
+//     .tabulator-frozen {
+//       border: 0 !important;
+//     }
+
+//     .tabulator-col {
+//       border: 0;
+//       padding-top: 0.3rem;
+//       padding-bottom: 0.3rem;
+//       background: transparent;
+//       border-top-left-radius: 5px;
+//       border-top-right-radius: 5px;
+
+//       &:hover {
+//         background: #ddd !important;
+//       }
+
+//       .tabulator-col-title-holder {
+//         font-weight: 600;
+//       }
+
+//       .tabulator-header-filter {
+//         input {
+//           padding: 4px 10px !important;
+//           border-radius: 5px;
+//           background: #f9f9f9;
+//           border: 1px solid #ddd;
+//         }
+
+//         &:hover input {
+//           background: white;
+//         }
+//       }
+//     }
+//   }
+
+//   .tabulator-row {
+//     &.tabulator-selectable {
+//       &:hover {
+//         background: #c0daff;
+//       }
+//     }
+
+//     .tabulator-cell {
+//       padding: 10px 8px;
+
+//       > i {
+//         margin-top: 2px;
+//       }
+//     }
+//   }
+
+//   .tabulator-footer {
+//     border-top: none;
+
+//     .tabulator-paginator {
+//       margin-top: 1rem;
+
+//       label {
+//         display: none;
+//       }
+
+//       .tabulator-page {
+//         padding: 6px 10px;
+//         border-color: #ddd;
+
+//         &.active {
+//           color: #222;
+//           font-weight: bold;
+//           background: #ddd;
+//           &:hover {
+//             background: #ddd;
+//             border-color: #ddd;
+//           }
+//         }
+
+//         &:hover {
+//           background: #bbb;
+//           border-color: #bbb;
+//           color: #222;
+//         }
+//       }
+
+//       .tabulator-page-size {
+//         padding: 8px 2px;
+//         background: #f0f0f0;
+//         border-color: #ddd;
+//         color: #444;
+//         margin-left: 1rem;
+//         float: right;
+//       }
+//     }
+//   }
+
+//   .tabulator-header-filter input::placeholder {
+//     font-size: 0.75rem;
+//   }
+
+//   .tabulator-row.tabulator-group {
+//     border-top: 0;
+//     border-left: 0;
+//     border-right: 0;
+//     border-color: #ccc;
+//     padding-top: 0.6rem;
+//     padding-bottom: 0.6rem;
+//     background: #ddd;
+//   }
+
+//   .tabulator-tableholder {
+//     .tabulator-placeholder {
+//       .tabulator-placeholder-contents {
+//         color: #939393;
+//       }
+//     }
+//   }
+// }
+
+// .tabulator-footer-contents {
+//   align-items: flex-end !important;
+// }
