@@ -1,6 +1,14 @@
 package repository
 
-import "github.com/michaelhjung/miniurl/internal/database/models"
+import (
+	"errors"
+
+	"gorm.io/gorm"
+
+	"github.com/michaelhjung/miniurl/internal/database/models"
+)
+
+var ErrURLNotFound = errors.New("URL not found")
 
 func (r *Repository) GetAllURLs() ([]models.Url, error) {
 	var urls []models.Url
@@ -8,14 +16,6 @@ func (r *Repository) GetAllURLs() ([]models.Url, error) {
 		return nil, err
 	}
 	return urls, nil
-}
-
-func (r *Repository) GetURLByID(id uint) (*models.Url, error) {
-	var url models.Url
-	if err := r.DB.First(&url, id).Error; err != nil {
-		return nil, err
-	}
-	return &url, nil
 }
 
 func (r *Repository) GetURLsByUserID(userID uint) ([]models.Url, error) {
@@ -26,6 +26,26 @@ func (r *Repository) GetURLsByUserID(userID uint) ([]models.Url, error) {
 	}
 
 	return urls, nil
+}
+
+func (r *Repository) GetURLByShortURL(shortURL string) (*models.Url, error) {
+	var url models.Url
+	err := r.DB.Where("short_url = ?", shortURL).First(&url).Error
+	if err != nil {
+		if err == gorm.ErrRecordNotFound {
+			return nil, ErrURLNotFound
+		}
+		return nil, err
+	}
+	return &url, nil
+}
+
+func (r *Repository) GetURLByID(id uint) (*models.Url, error) {
+	var url models.Url
+	if err := r.DB.First(&url, id).Error; err != nil {
+		return nil, err
+	}
+	return &url, nil
 }
 
 func (r *Repository) CreateURL(url *models.Url) (*models.Url, error) {
