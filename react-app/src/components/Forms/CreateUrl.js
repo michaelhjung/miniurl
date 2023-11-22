@@ -36,10 +36,9 @@ export const CreateUrl = () => {
   };
 
   return (
-    <div className="form-wrapper login-form-wrapper">
+    <div className="form-wrapper create-url-form-wrapper">
       {error && !noCurrentUserError && <div className="error">{error}</div>}
       <FormComponent
-        // formTitle="Shorten a URL"
         formData={formData}
         onSubmit={handleSubmit}
         formClasses="create-url-form"
@@ -47,7 +46,6 @@ export const CreateUrl = () => {
         submitButtonText={
           <i className="fa-solid fa-down-left-and-up-right-to-center" />
         }
-        // submitButtonText={<i className="fa-solid fa-plus" />}
       />
     </div>
   );

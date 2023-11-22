@@ -1,13 +1,26 @@
 // import { Tabulator } from "tabulator-tables";
 import { TabulatorFull } from "tabulator-tables";
 
-export const initializeTable = (data, columns, selector, placeholder) => {
+export const initializeTable = (
+  selector,
+  data,
+  columns,
+  rowContextMenu,
+  placeholder,
+  initialSort
+) => {
   const table = new TabulatorFull(selector, {
     data: data,
     columns: columns,
     layout: "fitColumns",
     resizableColumnFit: true,
+    rowContextMenu: rowContextMenu,
+    reactiveData: true,
     placeholder: placeholder,
+    initialSort: initialSort ? initialSort : [],
+    pagination: true,
+    paginationSize: 10,
+    paginationSizeSelector: [10, 25, 50],
   });
   return table;
 };

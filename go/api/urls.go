@@ -103,5 +103,5 @@ func (a *API) deleteURL(c *fiber.Ctx) error {
 		return res.NotFoundError(c, err.Error())
 	}
 
-	return c.SendString("Successfully deleted URL")
+	return c.JSON("Successfully deleted URL")
 }

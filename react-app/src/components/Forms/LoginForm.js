@@ -61,7 +61,7 @@ export const LoginForm = () => {
       <p className="under-form-text">
         Don't have an account? Sign up <a href="/signup">here</a>.
       </p>
-      <button className="demo-login-button" onClick={loginWithDemo}>
+      <button className="button demo-login-button" onClick={loginWithDemo}>
         Login as a demo user
       </button>
     </div>

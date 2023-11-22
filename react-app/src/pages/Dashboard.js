@@ -24,7 +24,7 @@ export const Dashboard = () => {
       <div>
         <NavPrimary currentUser={currentUser} />
 
-        <h1>Welcome back, {currentUser.firstName}</h1>
+        <h1 className="mt-3">Welcome back, {currentUser.firstName}</h1>
 
         <div className="dashboard-actions">
           Reserved Space for Dashboard Actions

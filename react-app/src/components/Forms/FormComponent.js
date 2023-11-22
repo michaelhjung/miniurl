@@ -22,6 +22,7 @@ export const FormComponent = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(values);
+    setValues(initialValues);
   };
 
   return (
@@ -48,7 +49,9 @@ export const FormComponent = ({
         </div>
       ))}
       <button
-        className={submitButtonClasses ? `${submitButtonClasses}` : "mt-3"}
+        className={
+          submitButtonClasses ? `${submitButtonClasses} button` : "button mt-3"
+        }
         type="submit"
       >
         {submitButtonText || "Submit"}

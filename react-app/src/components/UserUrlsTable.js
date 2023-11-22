@@ -6,6 +6,7 @@ import {
 } from "../utils/tabulator";
 import { ToastContainer, toast } from "react-toastify";
 import { copyToClipboard } from "../utils/clipboard";
+import { deleteUrl } from "../api/urls";
 
 export const UserUrlsTable = ({ data }) => {
   const userUrlsSelector = "user-urls-table";
@@ -15,6 +16,18 @@ export const UserUrlsTable = ({ data }) => {
       ...url,
       formattedShortUrl: `${window.location.origin}/${url.shortUrl}`,
     }));
+
+    const rowContextMenu = [
+      {
+        label: "Delete Url",
+        action: async (e, row) => {
+          const { id } = row.getData();
+          await deleteUrl(id);
+          row.delete();
+          toast.success("Successfully deleted url");
+        },
+      },
+    ];
 
     const columns = [
       {
@@ -57,12 +70,15 @@ export const UserUrlsTable = ({ data }) => {
       },
     ];
     const placeholder = "No URLs created yet.";
+    // const initialSort = [{ column: "createdAt", dir: "desc" }];
 
     initializeTable(
+      `.${userUrlsSelector}`,
       formattedData,
       columns,
-      `.${userUrlsSelector}`,
+      rowContextMenu,
       placeholder
+      // initialSort
     );
   };
 

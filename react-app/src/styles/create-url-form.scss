@@ -4,6 +4,10 @@
   justify-content: center;
   align-items: center;
 
+  input {
+    border-radius: $standard-border-radius;
+  }
+
   .create-url-form-submit-button {
     width: 10%;
   }
