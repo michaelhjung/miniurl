@@ -36,7 +36,7 @@ export const CreateUrl = () => {
   };
 
   return (
-    <div className="form-wrapper create-url-form-wrapper">
+    <div className="create-url-form-wrapper">
       {error && !noCurrentUserError && <div className="error">{error}</div>}
       <FormComponent
         formData={formData}
