@@ -19,12 +19,26 @@ export const UserUrlsTable = ({ data }) => {
 
     const rowContextMenu = [
       {
-        label: "Delete Url",
+        label: "Go to original link",
+        action: async (e, row) => {
+          const { originalUrl } = row.getData();
+          window.open(originalUrl, "blank");
+        },
+      },
+      {
+        label: "Go to shortened link",
+        action: async (e, row) => {
+          const { formattedShortUrl } = row.getData();
+          window.open(formattedShortUrl, "blank");
+        },
+      },
+      {
+        label: "Delete URL",
         action: async (e, row) => {
           const { id } = row.getData();
           await deleteUrl(id);
           row.delete();
-          toast.success("Successfully deleted url");
+          toast.success("Successfully deleted URL");
         },
       },
     ];
