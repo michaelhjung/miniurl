@@ -16,7 +16,8 @@ export const initializeTable = (
     resizableColumnFit: true,
     rowContextMenu: rowContextMenu,
     reactiveData: true,
-    placeholder: placeholder,
+    placeholder: () =>
+      table.getDataCount() === 0 ? placeholder : "No matches found.",
     initialSort: initialSort ? initialSort : [],
     pagination: true,
     paginationSize: 10,
@@ -43,6 +44,23 @@ export const formatTimestampWithZone = (timestamp) => {
   const formatted = formatter.format(dateObj);
 
   return formatted;
+};
+
+const createInfoIcon = (tooltipText) =>
+  `<i
+    class='fa-solid fa-circle-info'
+    data-bs-toggle='tooltip'
+    title='${tooltipText}'
+    style='color: #777;'
+  />`;
+
+export const formatCellValueWithTooltip = (
+  cell,
+  formatterParams,
+  onRendered,
+  tooltipText
+) => {
+  return `<span>${cell.getValue()}</span> ${createInfoIcon(tooltipText)}`;
 };
 
 // FILTERS:

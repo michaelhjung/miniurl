@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import {
   filterDate,
+  formatCellValueWithTooltip,
   formatTimestampWithZone,
   initializeTable,
 } from "../utils/tabulator";
 import { ToastContainer, toast } from "react-toastify";
 import { copyToClipboard } from "../utils/clipboard";
 import { deleteUrl } from "../api/urls";
+import { activateBootstrapTooltips } from "../utils/tooltips";
 
 export const UserUrlsTable = ({ data }) => {
   const userUrlsSelector = "user-urls-table";
@@ -47,6 +49,13 @@ export const UserUrlsTable = ({ data }) => {
       {
         title: "Original URL",
         field: "originalUrl",
+        formatter: (cell, formatterParams, onRendered) =>
+          formatCellValueWithTooltip(
+            cell,
+            formatterParams,
+            onRendered,
+            "Click to copy"
+          ),
         headerFilter: "input",
         headerFilterPlaceholder: "Search",
         cellClick: (e, cell) => {
@@ -57,6 +66,13 @@ export const UserUrlsTable = ({ data }) => {
       {
         title: "Shortened URL",
         field: "formattedShortUrl",
+        formatter: (cell, formatterParams, onRendered) =>
+          formatCellValueWithTooltip(
+            cell,
+            formatterParams,
+            onRendered,
+            "Click to copy"
+          ),
         headerFilter: "input",
         headerFilterPlaceholder: "Search",
         cellClick: (e, cell) => {
@@ -86,7 +102,7 @@ export const UserUrlsTable = ({ data }) => {
     const placeholder = "No URLs created yet.";
     // const initialSort = [{ column: "createdAt", dir: "desc" }];
 
-    initializeTable(
+    const userUrlsTable = initializeTable(
       `.${userUrlsSelector}`,
       formattedData,
       columns,
@@ -94,6 +110,14 @@ export const UserUrlsTable = ({ data }) => {
       placeholder
       // initialSort
     );
+
+    userUrlsTable.on("tableBuilt", () => {
+      activateBootstrapTooltips();
+    });
+
+    userUrlsTable.on("pageLoaded", () => {
+      activateBootstrapTooltips();
+    });
   };
 
   useEffect(() => {
