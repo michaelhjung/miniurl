@@ -49,21 +49,15 @@ export const SignUpForm = () => {
       type: "text",
       placeholder: "last name",
     },
-    // {
-    //   label: 'Profile Image',
-    //   name: 'avatarURL',
-    //   type: 'file',
-    // },
   ];
 
   const handleSubmit = async (values) => {
     const userCredentials = {
-      username: values.username,
       email: values.email,
+      username: values.username,
       password: values.password,
-      first_name: values.firstName,
-      last_name: values.lastName,
-      biography: values.biography,
+      firstName: values.firstName,
+      lastName: values.lastName,
     };
 
     try {

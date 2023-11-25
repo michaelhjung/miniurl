@@ -67,6 +67,22 @@ form {
     input::placeholder {
       opacity: 0;
     }
+
+    .password-input-wrapper {
+      position: relative;
+
+      .password-toggle-btn {
+        position: absolute;
+        right: 10px; /* Adjust the position as needed */
+        top: 50%;
+        padding: 5px;
+        border: 1px solid $lighter-gray;
+        border-radius: $standard-border-radius;
+        cursor: pointer;
+        transform: translateY(-50%);
+        background-color: transparent;
+      }
+    }
   }
 }
 

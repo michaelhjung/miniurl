@@ -10,6 +10,7 @@ export const FormComponent = ({
   submitButtonText,
 }) => {
   const [values, setValues] = useState(initialValues);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,6 +18,10 @@ export const FormComponent = ({
       ...values,
       [name]: value,
     });
+  };
+
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleSubmit = (e) => {
@@ -30,22 +35,52 @@ export const FormComponent = ({
       {formTitle && <h2>{formTitle}</h2>}
       {formData.map((field, index) => (
         <div className="input-container" key={index}>
-          <input
-            type={field.type}
-            name={field.name}
-            value={values[field.name] || ""}
-            onChange={handleChange}
-            placeholder={field.placeholder || ""}
-            className={
-              index === 0
-                ? "first-input"
-                : index === formData.length - 1
-                  ? "last-input"
-                  : ""
-            }
-            autoFocus={index === 0 ? true : false}
-          />
-          <label htmlFor={field.name}>{field.placeholder}</label>
+          {field.type === "password" ? (
+            <div className="password-input-wrapper">
+              <input
+                type={showPassword ? "text" : "password"}
+                name={field.name}
+                value={values[field.name] || ""}
+                onInput={handleChange}
+                placeholder={field.placeholder || ""}
+                className={
+                  index === 0
+                    ? "first-input"
+                    : index === formData.length - 1
+                      ? "last-input"
+                      : ""
+                }
+                autoFocus={index === 0 ? true : false}
+              />
+              <label htmlFor={field.name}>{field.placeholder}</label>
+              <button
+                type="button"
+                className="password-toggle-btn"
+                onClick={handleTogglePassword}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
+          ) : (
+            <>
+              <input
+                type={field.type}
+                name={field.name}
+                value={values[field.name] || ""}
+                onInput={handleChange}
+                placeholder={field.placeholder || ""}
+                className={
+                  index === 0
+                    ? "first-input"
+                    : index === formData.length - 1
+                      ? "last-input"
+                      : ""
+                }
+                autoFocus={index === 0 ? true : false}
+              />
+              <label htmlFor={field.name}>{field.placeholder}</label>
+            </>
+          )}
         </div>
       ))}
       <button
