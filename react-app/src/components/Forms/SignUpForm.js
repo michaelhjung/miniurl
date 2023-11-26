@@ -15,7 +15,7 @@ export const SignUpForm = () => {
   useEffect(() => {
     if (!currentUser) return;
 
-    return navigate("/dashboard");
+    navigate("/dashboard");
   }, [currentUser, navigate]);
 
   const formData = [
@@ -62,16 +62,15 @@ export const SignUpForm = () => {
 
     try {
       // 1. Create user
-      const userAction = dispatch(createUser(userCredentials));
+      const userAction = await dispatch(createUser(userCredentials));
       if (userAction.type === "user/createUser/fulfilled") {
         // 2. Log the user in
         const loginCredentials = {
-          email: values.email,
+          emailOrUsername: values.email,
           password: values.password,
         };
 
         dispatch(login(loginCredentials));
-        navigate("/dashboard");
       }
     } catch (error) {
       console.error(`Error when creating user and profile: ${error}`);

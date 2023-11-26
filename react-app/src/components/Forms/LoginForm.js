@@ -15,7 +15,7 @@ export const LoginForm = () => {
   useEffect(() => {
     if (!currentUser) return;
 
-    return navigate("/dashboard");
+    navigate("/dashboard");
   }, [currentUser, navigate]);
 
   const formData = [
