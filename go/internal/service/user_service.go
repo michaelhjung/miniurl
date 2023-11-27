@@ -92,11 +92,11 @@ func (s *Service) CreateUser(userInput *CreateUserRequest) (*UserResponse, error
 	}
 
 	newUser := &models.User{
-		Email:          userInput.Email,
-		Username:       userInput.Username,
+		Email:          util.ToLowerCase(userInput.Email),
+		Username:       util.ToLowerCase(userInput.Username),
 		HashedPassword: hashedPassword,
-		FirstName:      userInput.FirstName,
-		LastName:       userInput.LastName,
+		FirstName:      util.TitleCase(userInput.FirstName),
+		LastName:       util.TitleCase(userInput.LastName),
 	}
 
 	user, err := s.Repo.CreateUser(newUser)
@@ -114,10 +114,10 @@ func (s *Service) UpdateUser(userID uint, updateUser *UpdateUserRequest) (*UserR
 	}
 
 	if updateUser.FirstName != nil {
-		currentUser.FirstName = *updateUser.FirstName
+		currentUser.FirstName = util.TitleCase(*updateUser.FirstName)
 	}
 	if updateUser.LastName != nil {
-		currentUser.LastName = *updateUser.LastName
+		currentUser.LastName = util.TitleCase(*updateUser.LastName)
 	}
 	if updateUser.Verified != nil {
 		currentUser.Verified = *updateUser.Verified

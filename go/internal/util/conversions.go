@@ -3,6 +3,10 @@ package util
 import (
 	"fmt"
 	"strconv"
+	"strings"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -22,4 +26,24 @@ func GetIDFromParams(c *fiber.Ctx, paramName string) (uint, error) {
 		return 0, fmt.Errorf("Failed to get ID from param '%s': %w", paramName, err)
 	}
 	return id, nil
+}
+
+// ----- STRINGS ----- //
+
+func TitleCase(s string) string {
+	titleCaseConverter := cases.Title(language.English)
+
+	words := strings.Fields(s)
+
+	for i, word := range words {
+		words[i] = titleCaseConverter.String(word)
+	}
+
+	result := strings.Join(words, " ")
+
+	return result
+}
+
+func ToLowerCase(s string) string {
+	return strings.ToLower(s)
 }

@@ -4,6 +4,7 @@ import { FormComponent } from "./FormComponent";
 import { login } from "../../store/users";
 import { useNavigate } from "react-router-dom";
 import { isNoCurrentUserError } from "../../utils/errors";
+import { toLowerCase } from "../../utils/strings";
 
 export const LoginForm = () => {
   const currentUser = useSelector((state) => state.users.currentUser);
@@ -35,7 +36,7 @@ export const LoginForm = () => {
 
   const handleSubmit = async (values) => {
     let credentials = {
-      emailOrUsername: values.emailOrUsername,
+      emailOrUsername: toLowerCase(values.emailOrUsername),
       password: values.password,
     };
     dispatch(login(credentials));

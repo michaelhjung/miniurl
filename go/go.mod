@@ -9,6 +9,7 @@ require (
 	github.com/golang-migrate/migrate/v4 v4.16.2
 	github.com/joho/godotenv v1.5.1
 	golang.org/x/crypto v0.15.0
+	golang.org/x/text v0.14.0
 	gorm.io/driver/postgres v1.5.4
 	gorm.io/gorm v1.25.5
 )
@@ -41,5 +42,4 @@ require (
 	go.uber.org/atomic v1.7.0 // indirect
 	golang.org/x/net v0.10.0 // indirect
 	golang.org/x/sys v0.14.0 // indirect
-	golang.org/x/text v0.14.0 // indirect
 )
