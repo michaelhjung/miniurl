@@ -39,11 +39,13 @@ func (a *API) InitRoutes(app *fiber.App) {
 	session := api.Group("/session")
 	users := api.Group("/users")
 	urls := api.Group("/urls")
+	urlAnalytics := api.Group("/url-analytics")
 	redirects := api.Group("/redirects")
 
 	a.InitCSRFRoutes(csrf)
 	a.InitSessionRoutes(session)
 	a.InitUserRoutes(users)
 	a.InitURLRoutes(urls)
+	a.InitUrlAnalyticsRoutes(urlAnalytics)
 	a.InitRedirects(redirects)
 }

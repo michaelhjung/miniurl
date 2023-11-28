@@ -45,5 +45,16 @@ func (u *UserSeeder) Seed(db *gorm.DB) (bool, []error) {
 		}
 		seeded = true
 	}
+
+	// Seed URLs under the demouser
+	urlSeeder := &UrlSeeder{}
+	urlSeeded, urlErrs := urlSeeder.Seed(db)
+	if urlSeeded {
+		seeded = true
+	}
+	if len(urlErrs) > 0 {
+		errs = append(errs, urlErrs...)
+	}
+
 	return seeded, errs
 }
