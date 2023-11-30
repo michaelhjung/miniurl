@@ -19,6 +19,8 @@ export const UserUrlsTable = ({ data }) => {
       formattedShortUrl: `${window.location.origin}/${url.shortUrl}`,
     }));
 
+    console.log("FORMATTED DATA:", formattedData);
+
     const rowContextMenu = [
       {
         label: "Go to original link",

@@ -13,5 +13,6 @@ type Url struct {
 	CreatedAt   time.Time `json:"createdAt" gorm:"autoCreateTime"`
 	UpdatedAt   time.Time `json:"updatedAt" gorm:"autoUpdateTime"`
 
-	User User `gorm:"foreignKey:UserID"`
+	User         User           `gorm:"foreignKey:UserID"`
+	UrlAnalytics []UrlAnalytics `gorm:"foreignKey:UrlID"`
 }

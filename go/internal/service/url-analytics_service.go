@@ -13,6 +13,15 @@ type CreateUrlAnalyticsRequest struct {
 	Referer   string `json:"referer"`
 }
 
+func (s *Service) GetUrlAnalyticsByURLID(urlID uint) ([]models.UrlAnalytics, error) {
+	urlAnalytics, err := s.Repo.GetUrlAnalyticsByURLID(urlID)
+	if err != nil {
+		return nil, fmt.Errorf("Failed to retrieve URL analytics by URL ID: %w", err)
+	}
+
+	return urlAnalytics, nil
+}
+
 func (s *Service) CreateUrlAnalytics(urlAnalyticsInput *CreateUrlAnalyticsRequest) (*models.UrlAnalytics, error) {
 	if err := ValidateStruct(urlAnalyticsInput); err != nil {
 		return nil, err
@@ -31,13 +40,4 @@ func (s *Service) CreateUrlAnalytics(urlAnalyticsInput *CreateUrlAnalyticsReques
 	}
 
 	return createdUrlAnalytics, nil
-}
-
-func (s *Service) GetUrlAnalyticsByURLID(urlID uint) ([]models.UrlAnalytics, error) {
-	urlAnalytics, err := s.Repo.GetUrlAnalyticsByURLID(urlID)
-	if err != nil {
-		return nil, fmt.Errorf("Failed to retrieve URL analytics by URL ID: %w", err)
-	}
-
-	return urlAnalytics, nil
 }

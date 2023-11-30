@@ -21,7 +21,7 @@ func (r *Repository) GetAllURLs() ([]models.Url, error) {
 func (r *Repository) GetURLsByUserID(userID uint) ([]models.Url, error) {
 	var urls []models.Url
 
-	if err := r.DB.Where("user_id = ?", userID).Find(&urls).Error; err != nil {
+	if err := r.DB.Preload("UrlAnalytics").Where("user_id = ?", userID).Find(&urls).Error; err != nil {
 		return nil, err
 	}
 

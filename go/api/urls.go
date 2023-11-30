@@ -14,6 +14,7 @@ import (
 func (a *API) InitURLRoutes(urls fiber.Router) {
 	urls.Get("/", a.getAllURLs)
 	urls.Get("/users/:userID", a.getAllUsersURLs)
+	urls.Get("/:id/url-analytics", a.getUrlAnalyticsByURLID)
 	urls.Get("/:id", a.getURLByID)
 	urls.Post("/", a.createURL)
 	urls.Put("/:id", a.updateURL)
@@ -41,6 +42,20 @@ func (a *API) getAllUsersURLs(c *fiber.Ctx) error {
 	}
 
 	return c.JSON(urls)
+}
+
+func (a *API) getUrlAnalyticsByURLID(c *fiber.Ctx) error {
+	urlID, err := util.GetIDFromParams(c, "urlID")
+	if err != nil {
+		return res.BadRequestError(c, fmt.Sprintf("Invalid URL ID param: %s", c.Params("urlID")))
+	}
+
+	urlAnalytics, err := a.Service.GetUrlAnalyticsByURLID(urlID)
+	if err != nil {
+		return res.InternalServerError(c, "Failed to retrieve URL analytics by URL ID")
+	}
+
+	return c.JSON(urlAnalytics)
 }
 
 func (a *API) getURLByID(c *fiber.Ctx) error {
