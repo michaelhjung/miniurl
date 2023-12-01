@@ -10,7 +10,7 @@ import { copyToClipboard } from "../utils/clipboard";
 import { deleteUrl } from "../api/urls";
 import { activateBootstrapTooltips } from "../utils/tooltips";
 
-export const UserUrlsTable = ({ data }) => {
+export const UserUrlsTable = ({ data, openModal }) => {
   const userUrlsSelector = "user-urls-table";
 
   const generateUserUrlsTable = async (data) => {
@@ -18,8 +18,6 @@ export const UserUrlsTable = ({ data }) => {
       ...url,
       formattedShortUrl: `${window.location.origin}/${url.shortUrl}`,
     }));
-
-    console.log("FORMATTED DATA:", formattedData);
 
     const rowContextMenu = [
       {
@@ -88,6 +86,29 @@ export const UserUrlsTable = ({ data }) => {
         headerFilter: "number",
         headerFilterPlaceholder: "Search",
         width: 90,
+        hozAlign: "center",
+      },
+      {
+        title: "Analytics",
+        formatter: (cell, formatterParams, onRendered) => {
+          return "<b><u>View Analytics</u></b>";
+        },
+        cellClick: (e, cell) => {
+          const { UrlAnalytics } = cell.getData();
+          // TODO: create component and style nicely with graphs, etc. for this:
+          const formattedData = UrlAnalytics.map((a) => {
+            e.stopPropagation();
+            return (
+              <ul key={a.id}>
+                <li>IP ADDRESS: {a.ipAddress}</li>
+                <li>REFERER: {a.referer}</li>
+                <li>USER AGENT: {a.userAgent}</li>
+              </ul>
+            );
+          });
+          openModal(formattedData);
+        },
+        width: 140,
         hozAlign: "center",
       },
       {

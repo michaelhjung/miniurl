@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useModal } from "../context/ModalContext";
 import { NavPrimary } from "../components/Nav/NavPrimary";
 import { Footer } from "../components/Footer";
 import { fetchAllUsersUrls } from "../store/urls";
@@ -12,6 +13,7 @@ export const Dashboard = () => {
   const userUrls = useSelector((state) => state.urls.urls);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { openModal } = useModal();
 
   useEffect(() => {
     if (!currentUser) return navigate("/");
@@ -32,7 +34,7 @@ export const Dashboard = () => {
 
         <CreateUrl />
 
-        <UserUrlsTable data={userUrls} />
+        <UserUrlsTable data={userUrls} openModal={openModal} />
 
         <Footer />
       </div>
