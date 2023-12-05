@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FormComponent } from "./FormComponent";
 import { useNavigate } from "react-router-dom";
 import { isNoCurrentUserError } from "../../utils/errors";
 import { createUrl } from "../../store/urls";
-import { hasContent } from "../../utils/validators";
 
 export const CreateUrl = () => {
   const currentUser = useSelector((state) => state.users.currentUser);
