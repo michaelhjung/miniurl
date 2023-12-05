@@ -68,7 +68,7 @@ form {
       opacity: 0;
     }
 
-    .password-input-wrapper {
+    &.password-input-wrapper {
       position: relative;
 
       .password-toggle-btn {
@@ -81,6 +81,18 @@ form {
         cursor: pointer;
         transform: translateY(-50%);
         background-color: transparent;
+      }
+    }
+  }
+
+  button {
+    &[disabled] {
+      background-color: $lighter-gray;
+      cursor: not-allowed;
+
+      &:hover {
+        background-color: $lighter-gray;
+        cursor: not-allowed;
       }
     }
   }

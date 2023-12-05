@@ -24,30 +24,35 @@ export const SignUpForm = () => {
       name: "email",
       type: "email",
       placeholder: "email",
+      required: true,
     },
     {
       label: "Username",
       name: "username",
       type: "text",
       placeholder: "username",
+      required: true,
     },
     {
       label: "Password",
       name: "password",
       type: "password",
       placeholder: "password",
+      required: true,
     },
     {
       label: "First Name",
       name: "firstName",
       type: "text",
       placeholder: "first name",
+      required: true,
     },
     {
       label: "Last Name",
       name: "lastName",
       type: "text",
       placeholder: "last name",
+      required: true,
     },
   ];
 
@@ -85,7 +90,7 @@ export const SignUpForm = () => {
         formData={formData}
         onSubmit={handleSubmit}
       />
-      <p>
+      <p className="under-form-text">
         Already have an account? Log in <a href="/login">here</a>.
       </p>
     </div>

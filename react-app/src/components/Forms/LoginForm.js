@@ -25,12 +25,14 @@ export const LoginForm = () => {
       name: "emailOrUsername",
       type: "text",
       placeholder: "email or username",
+      required: true,
     },
     {
       label: "Password",
       name: "password",
       type: "password",
       placeholder: "password",
+      required: true,
     },
   ];
 

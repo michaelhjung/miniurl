@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { InputField } from "./InputField";
 
 export const FormComponent = ({
   formTitle,
@@ -24,6 +25,12 @@ export const FormComponent = ({
     setShowPassword(!showPassword);
   };
 
+  const isAnyRequiredInputEmpty = () => {
+    return formData.some(
+      (field) => field.required && !values[field.name]?.trim()?.length
+    );
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(values);
@@ -34,60 +41,27 @@ export const FormComponent = ({
     <form className={formClasses || ""} onSubmit={handleSubmit}>
       {formTitle && <h2>{formTitle}</h2>}
       {formData.map((field, index) => (
-        <div className="input-container" key={index}>
-          {field.type === "password" ? (
-            <div className="password-input-wrapper">
-              <input
-                type={showPassword ? "text" : "password"}
-                name={field.name}
-                value={values[field.name] || ""}
-                onInput={handleChange}
-                placeholder={field.placeholder || ""}
-                className={
-                  index === 0
-                    ? "first-input"
-                    : index === formData.length - 1
-                      ? "last-input"
-                      : ""
-                }
-                autoFocus={index === 0 ? true : false}
-              />
-              <label htmlFor={field.name}>{field.placeholder}</label>
-              <button
-                type="button"
-                className="password-toggle-btn"
-                onClick={handleTogglePassword}
-              >
-                {showPassword ? "Hide" : "Show"}
-              </button>
-            </div>
-          ) : (
-            <>
-              <input
-                type={field.type}
-                name={field.name}
-                value={values[field.name] || ""}
-                onInput={handleChange}
-                placeholder={field.placeholder || ""}
-                className={
-                  index === 0
-                    ? "first-input"
-                    : index === formData.length - 1
-                      ? "last-input"
-                      : ""
-                }
-                autoFocus={index === 0 ? true : false}
-              />
-              <label htmlFor={field.name}>{field.placeholder}</label>
-            </>
-          )}
-        </div>
+        <InputField
+          formData={formData}
+          key={index}
+          type={field.type}
+          name={field.name}
+          value={values[field.name] || ""}
+          onChange={handleChange}
+          placeholder={field.placeholder}
+          index={index}
+          autoFocus={index === 0}
+          required={Boolean(field.required)}
+          showPassword={showPassword}
+          handleTogglePassword={handleTogglePassword}
+        />
       ))}
       <button
         className={
           submitButtonClasses ? `${submitButtonClasses} button` : "button mt-3"
         }
         type="submit"
+        disabled={isAnyRequiredInputEmpty()}
       >
         {submitButtonText || "Submit"}
       </button>
