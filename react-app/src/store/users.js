@@ -1,42 +1,42 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import * as userApi from '../api/users';
-import * as sessionApi from '../api/session';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import * as userApi from "../api/users";
+import * as sessionApi from "../api/session";
 
 // Asynchronous Thunks
 export const fetchAllUsers = createAsyncThunk(
-  'user/fetchAllUsers',
-  userApi.fetchAllUsers,
+  "user/fetchAllUsers",
+  userApi.fetchAllUsers
 );
 export const fetchCurrentUser = createAsyncThunk(
-  'user/fetchCurrentUser',
-  sessionApi.fetchCurrentUser,
+  "user/fetchCurrentUser",
+  sessionApi.fetchCurrentUser
 );
-export const fetchUserById = createAsyncThunk('user/fetchUserById', (id) =>
-  userApi.fetchUserById(id),
+export const fetchUserById = createAsyncThunk("user/fetchUserById", (id) =>
+  userApi.fetchUserById(id)
 );
-export const createUser = createAsyncThunk('user/createUser', (userData) =>
-  userApi.createUser(userData),
+export const createUser = createAsyncThunk("user/createUser", (userData) =>
+  userApi.createUser(userData)
 );
-export const updateUser = createAsyncThunk('user/updateUser', (userData) =>
-  userApi.updateUser(userData),
+export const updateUser = createAsyncThunk("user/updateUser", (userData) =>
+  userApi.updateUser(userData)
 );
 export const changeUserPassword = createAsyncThunk(
-  'user/changeUserPassword',
-  (passwordData) => userApi.changeUserPassword(passwordData),
+  "user/changeUserPassword",
+  (passwordData) => userApi.changeUserPassword(passwordData)
 );
-export const deleteUser = createAsyncThunk('user/deleteUser', (id) =>
-  userApi.deleteUser(id),
+export const deleteUser = createAsyncThunk("user/deleteUser", (id) =>
+  userApi.deleteUser(id)
 );
 
 export const login = createAsyncThunk(
-  'user/login',
+  "user/login",
   async (credentials, { dispatch }) => {
     const response = await sessionApi.loginUser(credentials);
     if (response) dispatch(fetchCurrentUser());
     return response;
-  },
+  }
 );
-export const logout = createAsyncThunk('user/logout', sessionApi.logoutUser);
+export const logout = createAsyncThunk("user/logout", sessionApi.logoutUser);
 
 // Initial State
 const initialState = {
@@ -48,7 +48,7 @@ const initialState = {
 
 // User Slice
 const userSlice = createSlice({
-  name: 'users',
+  name: "users",
   initialState,
   reducers: {
     // Any synchronous operations can go here, e.g., logoutUser
@@ -76,11 +76,12 @@ const userSlice = createSlice({
         // This will be set by fetchCurrentUser.fulfilled case
       })
       .addCase(login.rejected, (state, action) => {
-        state.error = action.error.message;
+        state.error = "Invalid credentials";
       })
 
       .addCase(logout.fulfilled, (state) => {
         state.currentUser = null; // Clear the user upon logout
+        state.error = null;
       })
       .addCase(logout.rejected, (state, action) => {
         state.error = action.error.message;
@@ -100,6 +101,7 @@ const userSlice = createSlice({
 
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.currentUser = action.payload;
+        state.error = null;
       })
       .addCase(fetchCurrentUser.rejected, (state, action) => {
         state.error = action.error.message;
@@ -107,7 +109,7 @@ const userSlice = createSlice({
 
       .addCase(fetchUserById.fulfilled, (state, action) => {
         const index = state.users.findIndex(
-          (user) => user.id === action.payload.id,
+          (user) => user.id === action.payload.id
         );
         if (index !== -1) {
           state.users[index] = action.payload;
@@ -121,7 +123,7 @@ const userSlice = createSlice({
 
       .addCase(updateUser.fulfilled, (state, action) => {
         const index = state.users.findIndex(
-          (user) => user.id === action.payload.id,
+          (user) => user.id === action.payload.id
         );
         if (index !== -1) {
           state.users[index] = action.payload;
