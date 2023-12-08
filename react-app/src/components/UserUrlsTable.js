@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { copyToClipboard } from "../utils/clipboard";
 import { deleteUrl } from "../api/urls";
 import { activateBootstrapTooltips } from "../utils/tooltips";
+import AnalyticsChartD3 from "./AnalyticsChartD3";
 
 export const UserUrlsTable = ({ data, openModal }) => {
   const userUrlsSelector = "user-urls-table";
@@ -94,19 +95,15 @@ export const UserUrlsTable = ({ data, openModal }) => {
           return "<b><u>View Analytics</u></b>";
         },
         cellClick: (e, cell) => {
+          e.stopPropagation();
           const { UrlAnalytics } = cell.getData();
-          // TODO: create component and style nicely with graphs, etc. for this:
-          const formattedData = UrlAnalytics.map((a) => {
-            e.stopPropagation();
-            return (
-              <ul key={a.id}>
-                <li>IP ADDRESS: {a.ipAddress}</li>
-                <li>REFERER: {a.referer}</li>
-                <li>USER AGENT: {a.userAgent}</li>
-              </ul>
-            );
-          });
-          openModal(formattedData);
+          const formattedData = UrlAnalytics.map((a) => ({
+            ipAddress: a.ipAddress,
+            referer: a.referer,
+            userAgent: a.userAgent,
+            createdAt: a.createdAt,
+          }));
+          openModal(<AnalyticsChartD3 analyticsData={formattedData} />);
         },
         width: 140,
         hozAlign: "center",
@@ -123,15 +120,15 @@ export const UserUrlsTable = ({ data, openModal }) => {
       },
     ];
     const placeholder = "No URLs created yet.";
-    // const initialSort = [{ column: "createdAt", dir: "desc" }];
+    const initialSort = [{ column: "createdAt", dir: "desc" }];
 
     const userUrlsTable = initializeTable(
       `.${userUrlsSelector}`,
       formattedData,
       columns,
       rowContextMenu,
-      placeholder
-      // initialSort
+      placeholder,
+      initialSort
     );
 
     userUrlsTable.on("tableBuilt", () => {
